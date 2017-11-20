@@ -29,7 +29,7 @@ var DocumentEventHelper = {
 
 function forEachListener(vm, f) {
   Object.keys(vm._events).forEach(function (key) {
-    f(key, events[key]);
+    f(key, vm._events[key]);
   });
 }
 

@@ -20,6 +20,6 @@ export default {
 
 function forEachListener(vm: any, f: (key: string, listener: Function) => void) {
   Object.keys(vm._events).forEach(key => {
-    f(key, events[key])
+    f(key, vm._events[key])
   })
 }
