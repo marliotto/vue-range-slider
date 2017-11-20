@@ -3,6 +3,9 @@
 
 export default {
   created () {
+    Object.keys(this.$options.events).forEach((key) => {
+      this._events[key] = this.$options.events[key].bind(this)
+    })
     forEachListener(this, (key, listener) => {
       document.addEventListener(key, listener)
     })
@@ -16,8 +19,7 @@ export default {
 }
 
 function forEachListener(vm: any, f: (key: string, listener: Function) => void) {
-  const events = vm.$options.events
-  Object.keys(events).forEach(key => {
-    f(key, (event: Event) => events[key].call(vm, event))
+  Object.keys(vm._events).forEach(key => {
+    f(key, events[key])
   })
 }
